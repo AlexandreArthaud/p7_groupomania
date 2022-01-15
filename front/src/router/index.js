@@ -1,11 +1,26 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import store from '../store'
 import Home from '../views/Home.vue'
+import Login from '../components/Login.vue'
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'home',
+    component: Home,
+    beforeEnter: (to, from, next) => {
+      if (store.state.authenticated) {
+        next();
+      }
+      else {
+        next('/login');
+      }
+    }
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: Login,
   },
   {
     path: '/about',
