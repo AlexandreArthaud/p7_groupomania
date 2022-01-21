@@ -1,10 +1,12 @@
 const path = require('path');
 const express = require('express');
-const dotenv = require('dotenv')
-dotenv.config();
+
+const helmet = require('helmet');
+require('dotenv').config();
 
 const app = express();
 
+app.use(helmet());
 app.use((req, res, next) => {
 	// allow CORS
 	res.setHeader('Access-Control-Allow-Origin', '*');
