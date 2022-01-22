@@ -20,6 +20,13 @@
         },
         methods: {
             login() {
+                fetch('http://localhost:3000/api/auth', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 'username': this.input.username, 'password': this.input.password })});
+
                 if(this.input.username == "admin" && this.input.password == "pass") {
                     console.log(this.$store);
                     this.$store.commit("SETAUTHENTICATION", true);
