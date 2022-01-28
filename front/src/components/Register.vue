@@ -1,9 +1,10 @@
+
 <template>
     <div>
-        <h1>Login</h1>
+        <h1>Register</h1>
         <input type="text" name="username" v-model="input.username" placeholder="Username" />
         <input type="password" name="password" v-model="input.password" placeholder="Password" />
-        <button type="button" v-on:click="login()">Login</button>
+        <button type="button" v-on:click="register()">Login</button>
     </div>
 </template>
 
@@ -19,13 +20,13 @@
             }
         },
         methods: {
-            login() {
-                fetch('http://localhost:3000/api/auth/login', {
+            register() {
+                fetch('http://localhost:3000/api/auth/register', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ 'username': this.input.username, 'password': this.input.password })
+                    body: JSON.stringify({ 'login': this.input.username, 'password': this.input.password })
                 })
                 .then(
                     (res) => {
@@ -33,14 +34,6 @@
                     }
                 )
                 .catch(() => console.log("not working"));
-
-                if(this.input.username == "admin" && this.input.password == "pass") {
-                    console.log(this.$store);
-                    this.$store.commit("SETAUTHENTICATION", true);
-                    this.$router.replace({ name: 'home' });
-                } else {
-                    console.log("The username and / or password is incorrect");
-                }
             }
         }
     }
