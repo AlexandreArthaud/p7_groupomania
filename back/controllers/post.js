@@ -4,6 +4,11 @@ const { sequelize, DataTypes } = require('sequelize');
 const seq = require('../models/authenticate');
 const Post = require('../models/post')(seq, DataTypes);
 
+exports.getAllPosts = (req, res, next) => {
+	Post.findAll()
+	.then(posts => res.status(200).json(posts))
+	.catch(error  => res.status(400).json({ error }));
+}
 
 exports.createPost = (req, res, next) => {
 	Post.create({
