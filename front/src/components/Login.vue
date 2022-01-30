@@ -28,19 +28,12 @@
                     body: JSON.stringify({ 'username': this.input.username, 'password': this.input.password })
                 })
                 .then(
-                    (res) => {
-                        console.log(res);
+                    () => {
+											this.$store.commit("SETAUTHENTICATION", true);
+											this.$router.replace({ name: 'home' });
                     }
                 )
-                .catch(() => console.log("not working"));
-
-                if(this.input.username == "admin" && this.input.password == "pass") {
-                    console.log(this.$store);
-                    this.$store.commit("SETAUTHENTICATION", true);
-                    this.$router.replace({ name: 'home' });
-                } else {
-                    console.log("The username and / or password is incorrect");
-                }
+                .catch(() => console.log("The username and / or password is incorrect"));
             }
         }
     }

@@ -3,6 +3,7 @@ import store from '../store'
 import Home from '../views/Home.vue'
 import Login from '../components/Login.vue'
 import Register from '../components/Register.vue'
+import Post from '../components/Post.vue';
 
 const routes = [
   {
@@ -27,6 +28,19 @@ const routes = [
     path: '/register',
     name: 'register',
     component: Register,
+  },
+  {
+    path: '/post',
+    name: 'post',
+    component: Post,
+    beforeEnter: (to, from, next) => {
+      if (store.state.authenticated) {
+        next();
+      }
+      else {
+        next('/login');
+      }
+    }
   },
   {
     path: '/about',
