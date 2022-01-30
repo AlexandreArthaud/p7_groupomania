@@ -5,6 +5,7 @@ const path = require('path');
 
 // route imports
 const userRoutes = require('./routes/user');
+const postRoutes = require('./routes/post');
 
 // safety related modules
 const helmet = require('helmet');
@@ -26,7 +27,10 @@ app.use(cors({origin: true, credentials: true}));
 
 app.use(express.json());
 
+app.use('/assets/images/', express.static(path.join(__dirname, 'image')));
+
 // setting up routes
 app.use('/api/auth', userRoutes);
+app.use('/api/posts', postRoutes);
 
 module.exports = app;
