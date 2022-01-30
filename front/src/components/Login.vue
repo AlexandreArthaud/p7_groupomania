@@ -28,9 +28,11 @@
                     body: JSON.stringify({ 'username': this.input.username, 'password': this.input.password })
                 })
                 .then(
-                    () => {
-											this.$store.commit("SETAUTHENTICATION", true);
-											this.$router.replace({ name: 'home' });
+                    (res) => {
+                        if (res.status == 200) {
+                            this.$store.commit("SETAUTHENTICATION", true);
+                            this.$router.replace({ name: 'home' });
+                        }
                     }
                 )
                 .catch(() => console.log("The username and / or password is incorrect"));
