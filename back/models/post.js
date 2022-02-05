@@ -1,4 +1,9 @@
 'use strict';
+
+const { sequelize, DataTypes } = require('sequelize');
+const seq = require('../models/authenticate');
+const User = require('../models/user')(seq, DataTypes);
+
 const {
   Model
 } = require('sequelize');
@@ -15,10 +20,18 @@ module.exports = (sequelize, DataTypes) => {
   }
   Post.init({
     title: DataTypes.STRING,
-    filePath: DataTypes.STRING
+    filePath: DataTypes.STRING,
+    userId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: User,
+        key: 'id'
+      }
+    }
   }, {
     sequelize,
     modelName: 'Post',
   });
+  Post.belongsTo(User);
   return Post;
 };

@@ -19,7 +19,7 @@ exports.register = (req, res, next) => {
 };
 
 exports.login = (req, res, next) => {
-	User.findByPk(1)
+	User.findOne({ where: { login: req.body.username } })
 		.then(user => {
 			if (!user) {
 				return res.status(401).json({ error: 'Utilisateur non trouvé !' });
