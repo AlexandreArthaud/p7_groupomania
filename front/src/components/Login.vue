@@ -31,6 +31,12 @@
                     (res) => {
                         if (res.status == 200) {
                             this.$store.commit("SETAUTHENTICATION", true);
+                            res.json()
+                            .then(data => { 
+                                this.$store.commit("SETTOKEN", data.token);
+                                this.$store.commit("SETUSERID", data.userId);
+                            })
+                            .catch(error => console.error(error));
                             this.$router.replace({ name: 'home' });
                         }
                     }

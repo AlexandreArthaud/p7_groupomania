@@ -28,12 +28,14 @@
                 fetch('http://localhost:3000/api/posts/', {
                     method: 'POST',
                     headers: {
+                        'Authorization': `Bearer ${this.$store.state.token}`,
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        'title': this.input.title,
-                        'caption': this.input.caption,
-                        'file': this.input.file,
+                        title: this.input.title,
+                        caption: this.input.caption,
+                        file: this.input.file,
+                        userId: this.$store.state.userId,
                     }),
                 })
                 .then(

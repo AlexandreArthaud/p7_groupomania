@@ -14,13 +14,8 @@ module.exports = {
       file_path: {
         type: Sequelize.STRING
       },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+      caption: {
+        type: Sequelize.STRING
       },
       userId: {
         allowNull: false,
@@ -29,7 +24,15 @@ module.exports = {
           model: 'Users',
           key: 'id',
         }
-      }
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
     });
   },
   async down(queryInterface, Sequelize) {

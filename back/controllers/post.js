@@ -12,6 +12,8 @@ exports.createPost = (req, res, next) => {
 	db.Post.create({
 		title: req.body.title,
 		file_path: `${req.protocol}://${req.get('host')}/assets/image/${req.body.file.filename}`, 
+		caption: req.body.caption,
+		userId: req.body.userId,
 	})
 	.then(() => res.status(201).json({ message: 'Posted ' }))
 	.catch(err => res.status(500).json({ err }));

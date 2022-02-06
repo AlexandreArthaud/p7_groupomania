@@ -20,7 +20,8 @@ export default {
     }
   },
   created() {
-    console.log("hi");
+    console.log(this.$store.state.token);
+    console.log(this.$store.state.userId);
     fetch('http://localhost:3000/api/posts/')
     .then(res => res.json().then(body => this.posts = body))
     .catch(error => console.error(error));
