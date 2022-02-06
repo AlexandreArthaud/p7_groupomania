@@ -1,8 +1,9 @@
 <template>
   <div>
+    {{ this.posts }}
     <div v-for="post in this.posts" :key="post.id">
       <h1>{{ post.title }}</h1>
-      <p>{{ post.filePath }}</p>
+      <p>{{ post.file_path }}</p>
     </div>
   </div>
 </template>

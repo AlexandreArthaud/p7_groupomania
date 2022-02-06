@@ -1,15 +1,14 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
-const { sequelize, DataTypes } = require('sequelize');
-const seq = require('../models/authenticate');
-const User = require('../models/user')(seq, DataTypes);
+const db = require('../models/index');
 
 exports.register = (req, res, next) => {
+	console.log(db.User);
 	bcrypt.hash(req.body.password, 10)
 		.then(hash => {
-			User.create({
-				login: req.body.login,
+			db.User.create({
+				username: req.body.username,
 				password: hash
 			})
 			.then(() => res.status(201).json({ message: 'Utilisateur créé!' }))
@@ -19,7 +18,7 @@ exports.register = (req, res, next) => {
 };
 
 exports.login = (req, res, next) => {
-	User.findOne({ where: { login: req.body.username } })
+	db.User.findOne({ where: { username: req.body.username } })
 		.then(user => {
 			if (!user) {
 				return res.status(401).json({ error: 'Utilisateur non trouvé !' });

@@ -26,7 +26,7 @@
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ 'login': this.input.username, 'password': this.input.password })
+                    body: JSON.stringify({ 'username': this.input.username, 'password': this.input.password })
                 })
                 .then(
                     () => {
